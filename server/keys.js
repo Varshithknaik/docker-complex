@@ -14,5 +14,4 @@ module.exports = {
   pgDatabase,
   pgPassword,
   pgPort,
-
 };
