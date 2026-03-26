@@ -1,7 +1,7 @@
-require('dotenv').config();
 const keys = require('./keys');
 
 // Express App setup
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
