@@ -1,7 +1,7 @@
+import React, { Component } from 'react'
 import axios from 'axios'
-import React from 'react'
 
-class Fib extends React.Component {
+class Fib extends Component {
   state = {
     seenIndexes: [],
     values: {},
@@ -20,7 +20,9 @@ class Fib extends React.Component {
 
   async fetchIndexes() {
     const seenIndexes = await axios.get('/api/values/all')
-    this.setState({ seenIndexes: seenIndexes.data })
+    this.setState({
+      seenIndexes: seenIndexes.data,
+    })
   }
 
   handleSubmit = async (event) => {
@@ -38,6 +40,7 @@ class Fib extends React.Component {
 
   renderValues() {
     const entries = []
+
     for (let key in this.state.values) {
       entries.push(
         <div key={key}>
@@ -56,14 +59,16 @@ class Fib extends React.Component {
           <label>Enter your index:</label>
           <input
             value={this.state.index}
-            onChange={(e) => this.setState({ index: e.target.value })}
+            onChange={(event) => this.setState({ index: event.target.value })}
           />
           <button>Submit</button>
         </form>
+
         <h3>Indexes I have seen:</h3>
-        <div>{this.renderSeenIndexes()}</div>
-        <h3>Calculated Values</h3>
-        <div>{this.renderValues()}</div>
+        {this.renderSeenIndexes()}
+
+        <h3>Calculated Values:</h3>
+        {this.renderValues()}
       </div>
     )
   }

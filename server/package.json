@@ -8,7 +8,7 @@
     "body-parser": "*"
   },
   "scripts": {
-    "start": "NODE_ENV=production nodemon node index.js",
-    "dev": "NODE_ENV=development nodemon"
+    "dev": "NODE_ENV=development nodemon",
+    "start": "NODE_ENV=production node index.js"
   }
 }
