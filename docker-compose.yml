@@ -11,11 +11,16 @@ services:
     build:
       dockerfile: Dockerfile.dev
       context: ./server
-    volume:
+    volumes:
       - ./server:/app
       - /app/node_modules
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres_password
+      - PGPORT=5432
     ports:
-      - 3000:3000
+      - 5001:5000
