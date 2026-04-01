@@ -8,6 +8,9 @@ services:
     image: 'redis:latest'
 
   nginx:
+    depends_on:
+      - api
+      - client
     restart: always
     build:
       dockerfile: Dockerfile.dev
@@ -39,6 +42,7 @@ services:
       - ./client:/app
       - /app/node_modules
     environment:
+      - WDS_SOCKET_PORT=0
       - REDIS_HOST=redis
       - REDIS_PORT=6379
   worker:
