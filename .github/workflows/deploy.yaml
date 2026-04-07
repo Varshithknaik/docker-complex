@@ -11,5 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker build -t varshithknaik/docker-complex -f ./client/Dockerfile.dev ./client
-      - run: docker run -e CI=true varshithknaik/docker-complex npm test
+      - run: docker build -t varshithknaik/docker-complex-client -f ./client/Dockerfile.dev ./client
+      - run: docker run -e CI=true varshithknaik/docker-complex-client
+
+      - run: docker build -t varshithknaik/docker-multi-client ./client
+      - run: docker build -t varshithknaik/docker-multi-nginx ./nginx
+      - run: docker build -t varshithknaik/docker-multi-server ./server
+      - run: docker build -t varshithknaik/docker-multi-worker ./worker
+
+      - run: docker push varshithknaik/docker-multi-client
+      - run: docker push varshithknaik/docker-multi-nginx
+      - run: docker push varshithknaik/docker-multi-server
+      - run: docker push varshithknaik/docker-multi-worker
