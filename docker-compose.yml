@@ -1,9 +1,9 @@
 services:
   client:
-    image: 'varshithknaik/docker-multi-client'
+    image: 'varshithknaik/docker-multi-client:latest'
     mem_limit: 128m
     hostname: client
-  server:
+  api:
     image: 'varshithknaik/docker-multi-server'
     mem_limit: 128m
     hostname: api
