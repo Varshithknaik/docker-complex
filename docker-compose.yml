@@ -5,6 +5,7 @@ services:
     hostname: client
   api:
     image: 'varshithknaik/docker-multi-server'
+    restart: always
     mem_limit: 128m
     hostname: api
     environment:
