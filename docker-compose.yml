@@ -29,3 +29,4 @@ services:
     hostname: nginx
     ports:
       - '80:80'
+# image: stephengrider/multi-client
