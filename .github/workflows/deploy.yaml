@@ -2,8 +2,8 @@ name: Deploy Fronend
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - v*
 
 jobs:
   build:
@@ -14,12 +14,12 @@ jobs:
       - run: docker build -t varshithknaik/docker-complex-client -f ./client/Dockerfile.dev ./client
       - run: docker run -e CI=true varshithknaik/docker-complex-client npm test
 
-      - run: docker build -t varshithknaik/docker-multi-client ./client
-      - run: docker build -t varshithknaik/docker-multi-nginx ./nginx
-      - run: docker build -t varshithknaik/docker-multi-server ./server
-      - run: docker build -t varshithknaik/docker-multi-worker ./worker
+      - run: docker build -t varshithknaik/docker-multi-client:${{github.ref_name}} ./client
+      - run: docker build -t varshithknaik/docker-multi-nginx:${{github.ref_name}} ./nginx
+      - run: docker build -t varshithknaik/docker-multi-server:${{github.ref_name}} ./server
+      - run: docker build -t varshithknaik/docker-multi-worker:${{github.ref_name}} ./worker
 
-      - run: docker push varshithknaik/docker-multi-client
-      - run: docker push varshithknaik/docker-multi-nginx
-      - run: docker push varshithknaik/docker-multi-server
-      - run: docker push varshithknaik/docker-multi-worker
+      - run: docker push varshithknaik/docker-multi-client:${{github.ref_name}}
+      - run: docker push varshithknaik/docker-multi-nginx:${{github.ref_name}}
+      - run: docker push varshithknaik/docker-multi-server:${{github.ref_name}}
+      - run: docker push varshithknaik/docker-multi-worker:${{github.ref_name}}
